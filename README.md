@@ -2,6 +2,7 @@
 
 
 ![结构图](https://upload-images.jianshu.io/upload_images/1216032-c421b0f9febc170d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/400)
+
 ![vlc播放效果](https://upload-images.jianshu.io/upload_images/1216032-f140994e9470a544.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/237/format/webp)
 
  **[上篇文章](https://www.jianshu.com/p/793fc98cc1a1)**
@@ -10,15 +11,23 @@
 步骤：
 --------------
 #### 1.下载lib到本地，然后依赖
+
  **[RtspServerAndVlcPlay](https://github.com/wobiancao/RtspServerAndVlcPlay)**
+ 
 ``
 git clone https://github.com/wobiancao/RtspServerAndVlcPlay.git
 ``
 1) 如果只是推流端，只需要依赖 **[rtsplibrary](https://github.com/wobiancao/RtspServerAndVlcPlay/tree/master/rtsplibrary)**
-2) 如果只是播放端，只需要依赖**[libvlc-android](https://github.com/wobiancao/RtspServerAndVlcPlay/tree/master/libvlc-android)**
+
+2) 如果只是播放端，只需要依赖 **[libvlc-android](https://github.com/wobiancao/RtspServerAndVlcPlay/tree/master/libvlc-android)**
+
 `` 重点声明: rtsplibrary是基于libstreaming开源封装 libvlc-android是别人开源vlc项目编译好的，非本人编译 ``
-libvlc-android 原项目地址：**[vlc-android-sdk](https://github.com/mrmaffen/vlc-android-sdk)** 多点几个star给作者鼓励吧
+
+libvlc-android 原项目地址： **[vlc-android-sdk](https://github.com/mrmaffen/vlc-android-sdk)** 
+多点几个star给作者鼓励吧
+
 #### 2.推流端
+
 1) 初始化
 ```Android
     public static final int REQUEST_CODE = 1001;
@@ -41,6 +50,7 @@ libvlc-android 原项目地址：**[vlc-android-sdk](https://github.com/mrmaffen
     };
 ```
 2) 授权成功后开启录屏线程服务
+
 ```
             //请求授权
             Intent captureIntent = mMediaProjectionManager.createScreenCaptureIntent();
@@ -64,6 +74,7 @@ libvlc-android 原项目地址：**[vlc-android-sdk](https://github.com/mrmaffen
     }
 ```
 3) 实现H264DataCollecter接口回调，设置推流数据
+
 ```
 @Override
     public void collect(H264Data data) {
@@ -71,6 +82,7 @@ libvlc-android 原项目地址：**[vlc-android-sdk](https://github.com/mrmaffen
     }
 ```
 #### 3.播放端
+
 1) 布局
 ```
 <SurfaceView
@@ -166,17 +178,24 @@ public void onExit(View view) {
     }
 
 ```
+
 体验
 --------------
+
 ![qr.png](https://upload-images.jianshu.io/upload_images/1216032-38d5489b5b2e9917.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/240)
+
 **[apk下载地址](https://fir.im/pxg5)**
 
 **[本项目github地址](https://github.com/wobiancao/RtspServerAndVlcPlay)**
+
 **欢迎star**
 
 Thanks
 ----------------
 **[libstreaming](https://github.com/fyhertz/libstreaming)**
+
 **[AndroidShow](https://github.com/sszhangpengfei/AndroidShow)**
+
 **[ScreenRecorder](https://github.com/glt/ScreenRecorder)**
+
 **[vlc-android-sdk](https://github.com/mrmaffen/vlc-android-sdk)**
