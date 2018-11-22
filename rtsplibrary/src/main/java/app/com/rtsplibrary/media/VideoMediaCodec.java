@@ -28,7 +28,7 @@ public class VideoMediaCodec extends MediaCodecBase {
     private final static String TAG = "VideoMediaCodec";
     private Surface mSurface;
     private long startTime = 0;
-    private int TIMEOUT_USEC = 12000;
+    private int TIMEOUT_USEC = 11000;
     public byte[] configbyte;
     private static String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/test1.h264";
     private BufferedOutputStream outputStream;

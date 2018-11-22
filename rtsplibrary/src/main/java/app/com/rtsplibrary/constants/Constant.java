@@ -15,16 +15,16 @@ public class Constant {
 
     public static  int VIDEO_DPI = 1;
 
-    public static  int VIDEO_BITRATE = 800000;// 800Kbps
+    public static  int VIDEO_BITRATE = 500000;// 500Kbps
 
-    public static  int VIDEO_FRAMERATE = 30;
+    public static  int VIDEO_FRAMERATE = 15;
 
-    public static  int VIDEO_IFRAME_INTER = 1;
+    public static  int VIDEO_IFRAME_INTER = 10;
 
     private  static int DEFAULT_RTSP_PORT = 1234;
     public static final int DEFAULT_CHANNEL_COUNT = 2;
 
-    public static boolean ISPAD = true;
+    public static boolean ISPAD = false;
 
     private static final float BPP = 0.25f;
 

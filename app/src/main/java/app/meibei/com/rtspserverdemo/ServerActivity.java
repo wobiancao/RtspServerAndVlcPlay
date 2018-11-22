@@ -52,7 +52,6 @@ public class ServerActivity extends AppCompatActivity implements H264DataCollect
 
     private void initServer() {
         mMediaProjectionManager = (MediaProjectionManager) getSystemService(MEDIA_PROJECTION_SERVICE);
-        Constant.ISPAD = false;
     }
 
     public void onStart(View view) {
