@@ -2,9 +2,10 @@
 
 
 ![结构图](https://upload-images.jianshu.io/upload_images/1216032-c421b0f9febc170d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/400)
-![vlc播放效果.gif](https://upload-images.jianshu.io/upload_images/1216032-f140994e9470a544.gif?imageMogr2/auto-orient/strip)
+![vlc播放效果](https://upload-images.jianshu.io/upload_images/1216032-f140994e9470a544.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/237/format/webp)
 
-**[上篇文章](https://www.jianshu.com/p/793fc98cc1a1)**
+ **[上篇文章](https://www.jianshu.com/p/793fc98cc1a1)**
+
 
 步骤：
 --------------
