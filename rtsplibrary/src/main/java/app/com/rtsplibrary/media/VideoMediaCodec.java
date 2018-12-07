@@ -120,7 +120,7 @@ public class VideoMediaCodec extends MediaCodecBase {
                 if (System.currentTimeMillis() - timeStamp >= 1000) {
                     timeStamp = System.currentTimeMillis();
                     Bundle params = new Bundle();
-                    params.putInt(MediaCodec.PARAMETER_KEY_REQUEST_SYNC_FRAME, 1);
+                    params.putInt(MediaCodec.PARAMETER_KEY_REQUEST_SYNC_FRAME, 2);
                     mEncoder.setParameters(params);
                 }
                 int outputBufferIndex  = mEncoder.dequeueOutputBuffer(mBufferInfo, TIMEOUT_USEC);

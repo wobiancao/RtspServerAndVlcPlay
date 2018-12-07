@@ -5,7 +5,7 @@ import java.util.concurrent.LinkedBlockingDeque;
 import app.com.rtsplibrary.media.H264Data;
 
 public class DataUtil {
-    private static int queuesize = 10 * 1024;
+    private static int queuesize = 8 * 1024;
     private LinkedBlockingDeque<H264Data> h264Queue = new LinkedBlockingDeque<>(queuesize);
     private volatile static DataUtil mDataUtil;
     private DataUtil(){}
