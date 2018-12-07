@@ -9,17 +9,17 @@ import java.util.Locale;
 public class Constant {
     public static final String MIME_TYPE = "video/avc";
 
-    public static final int VIDEO_WIDTH = 1280;
+    public static final int VIDEO_WIDTH = 720; //横屏w 和 h互换
 
-    public static final int VIDEO_HEIGHT = 720;
+    public static final int VIDEO_HEIGHT = 1280;
 
     public static  int VIDEO_DPI = 1;
 
-    public static  int VIDEO_BITRATE = 500000;// 500Kbps
+    public static  int VIDEO_BITRATE = 1280 * 1000;
 
-    public static  int VIDEO_FRAMERATE = 15;
+    public static  int VIDEO_FRAMERATE = 25;
 
-    public static  int VIDEO_IFRAME_INTER = 10;
+    public static  int VIDEO_IFRAME_INTER = 1;
 
     private  static int DEFAULT_RTSP_PORT = 1234;
     public static final int DEFAULT_CHANNEL_COUNT = 2;

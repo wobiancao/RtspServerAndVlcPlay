@@ -9,15 +9,14 @@ import app.com.rtsplibrary.constants.Constant;
 public class DisplayUtils {
 
     public static int getDisplayW(Context context){
-        WindowManager wm = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
-        int windowWidth = wm.getDefaultDisplay().getWidth();
-        return Constant.isPad() ? align(windowWidth * 2 / 5, 16) : windowWidth;
+        return Constant.isPad() ? 1280: 720;
     }
 
+
     public static int getDisplayH(Context context){
-        WindowManager wm = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
-        int windowHeight = wm.getDefaultDisplay().getHeight();
-        return Constant.isPad() ? align(windowHeight * 2 / 5, 16) : windowHeight;
+
+        return Constant.isPad() ? 720: 1280;
+
     }
 
     public static int align(int d, int a) {

@@ -43,7 +43,7 @@ public class H264Packetizer extends AbstractPacketizer implements Runnable {
 	private int naluLength = 0;
 	private long delay = 0, oldtime = 0;
 	private Statistics stats = new Statistics();
-	private byte[] sps = null, pps = null;
+	private byte[] sps = null, pps = null,  stapa = null;
 	byte[] header = new byte[5];
 	private int count = 0;
 	private int streamType = 1;
@@ -188,11 +188,30 @@ public class H264Packetizer extends AbstractPacketizer implements Runnable {
 		// to add them to the stream ourselves
 		if (type == 7 || type == 8) {
 			Log.v(TAG,"SPS or PPS present in the stream.");
-			count++;
-			if (count>4) {
-				sps = null;
-				pps = null;
-			}
+//			count++;
+//			if (count>4) {
+//				sps = null;
+//				pps = null;
+//			}
+			byte[] buf = new byte[1300];
+			len = fill(buf, 0,  naluLength-1);
+			stapa = new byte[len + 5];
+			System.arraycopy(header, 0, stapa, 0, 5);
+			System.arraycopy(buf, 0, stapa, 5, len);
+
+			Log.v(TAG,"SPS or PPS present in the stream.");
+			return;
+		}
+
+		//如果是type为5的关键帧，则吧sps和pps放置到图像数据前面
+		// We send two packets containing NALU type 7 (SPS) and 8 (PPS)
+		// Those should allow the H264 stream to be decoded even if no SDP was sent to the decoder.
+		if (type == 5 && stapa!= null) {
+			buffer = socket.requestBuffer();
+			socket.markNextPacket();
+			socket.updateTimestamp(ts);
+			System.arraycopy(stapa, 0, buffer, rtphl, stapa.length);
+			super.send(rtphl+stapa.length);
 		}
 
 		//Log.d(TAG,"- Nal unit length: " + naluLength + " delay: "+delay/1000000+" type: "+type);

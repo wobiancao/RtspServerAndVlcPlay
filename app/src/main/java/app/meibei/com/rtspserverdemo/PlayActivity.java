@@ -19,7 +19,7 @@ import org.videolan.libvlc.MediaPlayer;
 
 import java.util.ArrayList;
 
-import app.meibei.com.rtspserverdemo.util.DisplayUtil;
+import app.com.rtsplibrary.constants.Constant;
 
 
 public class PlayActivity extends AppCompatActivity {
@@ -40,8 +40,12 @@ public class PlayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         onPreCreate();
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_play_video);
         mPlayView = findViewById(R.id.player_surface);
+
+
+
         initData();
     }
 
@@ -55,7 +59,8 @@ public class PlayActivity extends AppCompatActivity {
         libVLC = new LibVLC(getApplication(), options);
         mediaPlayer = new MediaPlayer(libVLC);
         mSurfaceHolder = mPlayView.getHolder();
-        mSurfaceHolder.setFixedSize(DisplayUtil.getDisplayW(this), DisplayUtil.getDisplayH(this));
+//        mSurfaceHolder.setFixedSize(1080, 1920);
+        mSurfaceHolder.setFixedSize(Constant.VIDEO_WIDTH, Constant.VIDEO_HEIGHT);
         mSurfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
         mediaPlayer.getVLCVout().setVideoSurface(mPlayView.getHolder().getSurface(), mSurfaceHolder);
         mediaPlayer.getVLCVout().attachViews();

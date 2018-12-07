@@ -17,10 +17,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 
 import app.com.rtsplibrary.constants.Constant;
-import app.com.rtsplibrary.data.DataUtil;
 import app.com.rtsplibrary.data.H264DataCollecter;
-import app.com.rtsplibrary.util.DisplayUtils;
-import app.com.rtsplibrary.util.L;
 
 
 public class VideoMediaCodec extends MediaCodecBase {
@@ -33,13 +30,10 @@ public class VideoMediaCodec extends MediaCodecBase {
     private static String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/test1.h264";
     private BufferedOutputStream outputStream;
     FileOutputStream outStream;
-
-    private int windowWidth;
-    private int windowHeight;
     private MediaCodec.BufferInfo mBufferInfo = new MediaCodec.BufferInfo();
     private long timeStamp = 0;
 
-
+    private Context context;
     private void createfile(){
         File file = new File(path);
         if(file.exists()){
@@ -57,8 +51,7 @@ public class VideoMediaCodec extends MediaCodecBase {
      * **/
     public VideoMediaCodec(WindowManager wm, Context context,H264DataCollecter mH264Collecter){
         this.mH264Collecter = mH264Collecter;
-        windowWidth = DisplayUtils.getDisplayW(context);
-        windowHeight = DisplayUtils.getDisplayH(context);
+        this.context = context;
         DisplayMetrics displayMetrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(displayMetrics);
         //createfile();
@@ -77,8 +70,8 @@ public class VideoMediaCodec extends MediaCodecBase {
     @Override
     public void prepare(){
         try{
-            L.e(windowWidth + "-" + windowHeight);
-            MediaFormat format = MediaFormat.createVideoFormat(Constant.MIME_TYPE, windowWidth, windowHeight);
+
+            MediaFormat format = MediaFormat.createVideoFormat(Constant.MIME_TYPE, Constant.VIDEO_WIDTH, Constant.VIDEO_HEIGHT);
             format.setInteger(MediaFormat.KEY_COLOR_FORMAT, MediaCodecInfo.CodecCapabilities.COLOR_FormatSurface);
             format.setInteger(MediaFormat.KEY_BIT_RATE, Constant.VIDEO_BITRATE);
             format.setInteger(MediaFormat.KEY_FRAME_RATE, Constant.VIDEO_FRAMERATE);
@@ -127,7 +120,7 @@ public class VideoMediaCodec extends MediaCodecBase {
                 if (System.currentTimeMillis() - timeStamp >= 1000) {
                     timeStamp = System.currentTimeMillis();
                     Bundle params = new Bundle();
-                    params.putInt(MediaCodec.PARAMETER_KEY_REQUEST_SYNC_FRAME, 0);
+                    params.putInt(MediaCodec.PARAMETER_KEY_REQUEST_SYNC_FRAME, 1);
                     mEncoder.setParameters(params);
                 }
                 int outputBufferIndex  = mEncoder.dequeueOutputBuffer(mBufferInfo, TIMEOUT_USEC);

@@ -28,8 +28,6 @@ public class ScreenRecordThread extends Thread {
     private VideoMediaCodec mVideoMediaCodec;
 
     private WindowManager wm;
-    private int windowWidth;
-    private int windowHeight;
     private int screenDensity;
 
 
@@ -37,8 +35,7 @@ public class ScreenRecordThread extends Thread {
         this.mContext = context;
         this.mMediaProjection = mp;
         wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        windowWidth = DisplayUtils.getDisplayW(context);
-        windowHeight = DisplayUtils.getDisplayH(context);
+
         DisplayMetrics displayMetrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(displayMetrics);
         screenDensity = displayMetrics.densityDpi;
@@ -51,10 +48,9 @@ public class ScreenRecordThread extends Thread {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(displayMetrics);
         screenDensity = displayMetrics.densityDpi;
-        Log.e("wm-dpi", windowWidth + "-" + windowHeight + "-" + screenDensity);
         mVideoMediaCodec.prepare();
         mSurface =  mVideoMediaCodec.getSurface();
-        mVirtualDisplay =mMediaProjection.createVirtualDisplay(TAG + "-display", windowWidth, windowHeight, Constant.VIDEO_DPI,
+        mVirtualDisplay =mMediaProjection.createVirtualDisplay(TAG + "-display", Constant.VIDEO_WIDTH, Constant.VIDEO_HEIGHT, screenDensity,
                 DisplayManager.VIRTUAL_DISPLAY_FLAG_AUTO_MIRROR,
                 mSurface, null, null);
         mVideoMediaCodec.isRun(true);
