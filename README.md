@@ -1,5 +1,6 @@
 # rstp vlc player wifi录屏直播 或：局域网无纸化会议封装，只需三步实现推流和播放
 
+#### 最近在试验udp组播的方式进行录屏直播 目前已完成链接，只是花屏太过严重。
 
 ![结构图](https://upload-images.jianshu.io/upload_images/1216032-c421b0f9febc170d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/400)
 
